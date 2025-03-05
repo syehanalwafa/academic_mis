@@ -15,7 +15,6 @@
             </div>
         </div>
         <div class = 'row' >
-            <p>Asisten Web Lanjut: {{$asdos}}</p>
             <ul>
                 @foreach($students as $std)
                     <li>{{$std}}</li>
