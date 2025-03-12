@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DemoController;
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\MahasiswaController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +17,15 @@ Route::get('/1', function () {
 });
 
 Route::get('/2', [DemoController::class, 'index']);
+
+// Dosen Routes
+Route::get('/dosen', [DosenController::class, 'index'])->name('dosenList');
+Route::get('/dosen/create', [DosenController::class, 'create'])->name('dosenCreate');
+Route::post('/dosen/create', [DosenController::class, 'store'])->name('dosenStore');
+
+
+
+Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswaList');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
