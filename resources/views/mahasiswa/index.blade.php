@@ -157,7 +157,7 @@
                                   type="button"
                                   data-bs-toggle="tooltip"
                                   title=""
-                                  class="btn btn-link btn-primary btn-lg"
+                                  class="btn btn-link btn-primary btn-lg edit-mhs"
                                   data-original-title="Edit Task"
                                 >
                                   <i class="fa fa-edit"></i>
@@ -166,7 +166,7 @@
                                   type="button"
                                   data-bs-toggle="tooltip"
                                   title=""
-                                  class="btn btn-link btn-danger"
+                                  class="btn btn-link btn-danger delete-mhs"
                                   data-original-title="Remove"
                                 >
                                   <i class="fa fa-times"></i>
@@ -189,5 +189,9 @@
 @endsection
 
 @section('ExtraJs')
-
+<script>
+    $('.delete-mhs').click(function() {
+       alert('test');
+    });
+</script>
 @endsection

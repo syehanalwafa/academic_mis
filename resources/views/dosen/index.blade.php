@@ -72,7 +72,7 @@
                                   type="button"
                                   data-bs-toggle="tooltip"
                                   title="Remove Dosen"
-                                  class="btn btn-link btn-danger delete-dosen" 
+                                  class="btn btn-link btn-danger delete-dosen"
                                   data-original-title="Remove Dosen"
                                 >
                                   <i class="fa fa-times"></i>
@@ -122,7 +122,6 @@
     delay:5000,
     type:info
   })
-  
 @endif
 </script>
 @endsection

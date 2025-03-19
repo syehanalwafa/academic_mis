@@ -40,6 +40,8 @@
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+
+      @yield('ExtraCss')
   </head>
   <body>
     <div class="wrapper">
@@ -51,7 +53,7 @@
         @include('layouts.main-header')
         @yield('content')
         @include('layouts.footer')
-        
+
       </div>
 
       <!-- Custom template | don't include it in your project! -->
@@ -313,5 +315,6 @@
         fillColor: "rgba(255, 165, 52, .14)",
       });
     </script>
+  @yield('ExtraJs')
   </body>
 </html>
