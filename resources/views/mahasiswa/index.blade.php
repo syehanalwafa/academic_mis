@@ -14,15 +14,11 @@
             <div class="card">
                   <div class="card-header">
                     <div class="d-flex align-items-center">
-                      <h4 class="card-title">Add Row</h4>
-                      <button
-                        class="btn btn-primary btn-round ms-auto"
-                        data-bs-toggle="modal"
-                        data-bs-target="#addRowModal"
-                      >
+                      <h4 class="card-title">Data Mahasiswa</h4>
+                      <a class="btn btn-primary btn-round ms-auto" href="{{ route('mahasiswaCreate') }}">
                         <i class="fa fa-plus"></i>
-                        Add Row
-                      </button>
+                        add row
+                      </a>
                     </div>
                   </div>
                   <div class="card-body">
@@ -120,7 +116,7 @@
                       >
                         <thead>
                           <tr>
-                            <th>Nik</th>
+                            <th>Nrp</th>
                             <th>Name</th>
                             <th>Birth_date</th>
                             <th>Email</th>
@@ -133,7 +129,7 @@
                         </thead>
                         <tfoot>
                           <tr>
-                            <th>Nik</th>
+                            <th>Nrp</th>
                             <th>Name</th>
                             <th>Birth_date</th>
                             <th>Email</th>
@@ -147,7 +143,7 @@
                         <tbody>
                         @foreach($mahasiswas as $mhs)
                           <tr>
-                            <td>{{ $mhs->nik }}</td>
+                            <td>{{ $mhs->nrp }}</td>
                             <td>{{ $mhs->name }}</td>
                             <td>{{ $mhs->birth_date }}</td>
                             <td>{{ $mhs->email }}</td>
