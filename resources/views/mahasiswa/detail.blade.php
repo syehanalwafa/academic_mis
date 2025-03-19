@@ -14,53 +14,45 @@
         <div class="card">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Edit Data Mahasiswa</h4>
+                    <h4 class="card-title">Add Data Mahasiswa</h4>
                 </div>
             </div>
             <div class="card-body">
 
                 <div class="row">
-                    <form method="POST" action="{{ route('mahasiswaUpdate', [$mahasiswa->nrp]) }}">
-                      @csrf
-                      @method('PUT')
+                    <form method="POST" action="{{ route('mahasiswaStore') }}">
+                        @csrf
                     <div class="form-group">
                         <label for="nrp">NRP</label>
-                        <input type="text" class="form-control" name="nrp" id="nrp" placeholder="e.g. 202472001" required readonly maxlength="9" value="{{ $mahasiswa->nrp }}" />
+                        <input type="text" class="form-control" name="nrp" id="nrp" placeholder="e.g. 202472001" required autofocus maxlength="9" />
                     </div>
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="e.g. John Doe" required autofocus value="{{ $mahasiswa->name }}" />
+                        <input type="text" class="form-control" name="name" id="name" placeholder="e.g. John Doe" required />
                     </div>
                     <div class="form-group">
                         <label for="birth_date">Birth Date</label>
-                        <input type="date" class="form-control" name="birth_date" id="birth_date" required value="{{ $mahasiswa->birth_date }}" />
+                        <input type="date" class="form-control" name="birth_date" id="birth_date" required />
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="e.g. johndoe@email.com" required value="{{ $mahasiswa->email }}" />
+                        <input type="email" class="form-control" name="email" id="email" placeholder="e.g. johndoe@email.com" required />
                     </div>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" class="form-control" name="address" id="address" placeholder="e.g. Surya Sumantri 65" required value="{{ $mahasiswa->address }}" />
+                            <input type="text" class="form-control" name="address" id="address" placeholder="e.g. Surya Sumantri 65" required />
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="text" class="form-control" name="phone" id="phone" placeholder="e.g. 081234567" required  value="{{ $mahasiswa->phone }}" />
+                            <input type="text" class="form-control" name="phone" id="phone" placeholder="e.g. 081234567" required />
                         </div>
                         <div class="form-group">
                             <label for="dosenWali">Dosen Wali</label>
-                          <select class="form-control" name="dosen_nik">
-                            @foreach($dosens as $dosen)
-                              @if ($dosen->nik == $mahasiswa->dosen_nik)
-                                <option value="{{ $dosen->nik }}" selected>{{ $dosen->name }}</option>
-                              @else
+                            <select class="form-control" name="dosen_nik" id="dosen_nik">
+                                @foreach($dosens as $dosen)
                                 <option value="{{ $dosen->nik }}">{{ $dosen->name }}</option>
-                              @endif
-                            @endforeach
-                          </select>
-                          @error('lecturer_nik')
-                          <div class="alert alert-danger">{{ $message }}</div>
-                          @enderror
+                                @endforeach
+                            </select>
                         </div>
                     <div class="card-action">
                         <input type="submit" class="btn btn-success">
