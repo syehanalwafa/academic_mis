@@ -4,15 +4,15 @@
 
         <!-- nip -->
         <div class="mt-4">
-            <x-input-label for="nip" :value="__('nip')" />
-            <x-text-input id="nip" class="block mt-1 w-full" type="nip" name="nip" :value="old('nip')" required autocomplete="nip" />
-            <x-input-error :messages="$errors->get('nip')" class="mt-2" />
+            <x-input-label for="nim" :value="__('nim')" />
+            <x-text-input id="nim" class="block mt-1 w-full" type="text" name="nim" :value="old('nim')" required autocomplete="nim" autofocus />
+            <x-input-error :messages="$errors->get('nim')" class="mt-2" />
         </div>
 
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 

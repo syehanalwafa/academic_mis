@@ -1,78 +1,194 @@
 @extends('layouts.index')
 
 @section('content')
-  <div class="container">
     <div class="page-inner">
-      <div
-          class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4"
-      >
-        <div>
-          <h3 class="fw-bold mb-3">Manage Data Mahasiswa</h3>
-          <h6 class="op-7 mb-2">Free Bootstrap 5 Admin Halaman 1</h6>
-        </div>
-      </div>
-        <div class="card">
-            <div class="card-header">
-                <div class="d-flex align-items-center">
-                    <h4 class="card-title">Edit Data Mahasiswa</h4>
-                </div>
+        <div
+            class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4"
+        >
+            <div>
+                <h3 class="fw-bold mb-3">Manage Data Mahasiswa</h3>
+                <h6 class="op-7 mb-2">Free Bootstrap 5 Admin Halaman 1</h6>
             </div>
-            <div class="card-body">
 
-                <div class="row">
-                    <form method="POST" action="{{ route('mahasiswaUpdate', [$mahasiswa->nrp]) }}">
-                      @csrf
-                      @method('PUT')
-                    <div class="form-group">
-                        <label for="nrp">NRP</label>
-                        <input type="text" class="form-control" name="nrp" id="nrp" placeholder="e.g. 202472001" required readonly maxlength="9" value="{{ $mahasiswa->nrp }}" />
+        </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">Add Row</h4>
+                        <button
+                            class="btn btn-primary btn-round ms-auto"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addRowModal"
+                        >
+                            <i class="fa fa-plus"></i>
+                            Add Row
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="e.g. John Doe" required autofocus value="{{ $mahasiswa->name }}" />
-                    </div>
-                    <div class="form-group">
-                        <label for="birth_date">Birth Date</label>
-                        <input type="date" class="form-control" name="birth_date" id="birth_date" required value="{{ $mahasiswa->birth_date }}" />
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="e.g. johndoe@email.com" required value="{{ $mahasiswa->email }}" />
-                    </div>
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <input type="text" class="form-control" name="address" id="address" placeholder="e.g. Surya Sumantri 65" required value="{{ $mahasiswa->address }}" />
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="text" class="form-control" name="phone" id="phone" placeholder="e.g. 081234567" required  value="{{ $mahasiswa->phone }}" />
-                        </div>
-                        <div class="form-group">
-                            <label for="dosenWali">Dosen Wali</label>
-                          <select class="form-control" name="dosen_nik">
-                            @foreach($dosens as $dosen)
-                              @if ($dosen->nik == $mahasiswa->dosen_nik)
-                                <option value="{{ $dosen->nik }}" selected>{{ $dosen->name }}</option>
-                              @else
-                                <option value="{{ $dosen->nik }}">{{ $dosen->name }}</option>
-                              @endif
-                            @endforeach
-                          </select>
-                          @error('lecturer_nik')
-                          <div class="alert alert-danger">{{ $message }}</div>
-                          @enderror
-                        </div>
-                    <div class="card-action">
-                        <input type="submit" class="btn btn-success">
-                        <input type="reset" value="Cancel" class="btn btn-danger">
-                    </div>
-                    </form>
                 </div>
+                <div class="card-body">
+                    <!-- Modal -->
+                    <div
+                        class="modal fade"
+                        id="addRowModal"
+                        tabindex="-1"
+                        role="dialog"
+                        aria-hidden="true"
+                    >
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header border-0">
+                                    <h5 class="modal-title">
+                                        <span class="fw-mediumbold"> New</span>
+                                        <span class="fw-light"> Row </span>
+                                    </h5>
+                                    <button
+                                        type="button"
+                                        class="close"
+                                        data-dismiss="modal"
+                                        aria-label="Close"
+                                    >
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="small">
+                                        Create a new row using this form, make sure you
+                                        fill them all
+                                    </p>
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group form-group-default">
+                                                    <label>Name</label>
+                                                    <input
+                                                        id="addName"
+                                                        type="text"
+                                                        class="form-control"
+                                                        placeholder="fill name"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pe-0">
+                                                <div class="form-group form-group-default">
+                                                    <label>Position</label>
+                                                    <input
+                                                        id="addPosition"
+                                                        type="text"
+                                                        class="form-control"
+                                                        placeholder="fill position"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-group-default">
+                                                    <label>Office</label>
+                                                    <input
+                                                        id="addOffice"
+                                                        type="text"
+                                                        class="form-control"
+                                                        placeholder="fill office"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer border-0">
+                                    <button
+                                        type="button"
+                                        id="addRowButton"
+                                        class="btn btn-primary"
+                                    >
+                                        Add
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger"
+                                        data-dismiss="modal"
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="table-responsive">
+                        <table
+                            id="add-row"
+                            class="display table table-striped table-hover"
+                        >
+                            <thead>
+                            <tr>
+                                <th>NRP</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Birth_date</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Profile_Picture</th>
+                                <th>Dosen_Wali</th>
+                                <th style="width: 10%">Action</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>NRP</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Birth_date</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Profile_Picture</th>
+                                <th>Dosen_Wali</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            @foreach($mahasiswas as $mahasiswa)
+                            <tr>
+                                <td>{{ $mahasiswa->nrp }}</td>
+                                <td>{{ $mahasiswa->name}}</td>
+                                <td>{{ $mahasiswa->email}}</td>
+                                <td>{{ $mahasiswa->birth_date}}</td>
+                                <td>{{ $mahasiswa->phone}}</td>
+                                <td>{{ $mahasiswa->address}}</td>
+                                <td>{{ $mahasiswa->profile_picture}}</td>
+                                <td>{{ $mahasiswa->dosenWali->nik}} - {{ $mahasiswa->dosenWali->name}}</td>
+
+                                <td>
+                                    <div class="form-button-action">
+                                        <button
+                                            type="button"
+                                            data-bs-toggle="tooltip"
+                                            title=""
+                                            class="btn btn-link btn-primary btn-lg"
+                                            data-original-title="Edit Task"
+                                        >
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button
+                                            type="button"
+                                            data-bs-toggle="tooltip"
+                                            title=""
+                                            class="btn btn-link btn-danger"
+                                            data-original-title="Remove"
+                                        >
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-  </div>
+
 @endsection
 
 @section('ExtraCss')

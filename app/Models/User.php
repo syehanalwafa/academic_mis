@@ -20,11 +20,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'nip',
+        //'email',
+        'nim',
+        'role_id',
         'password',
     ];
 
-    protected $primaryKey = 'nip';
+    protected $primaryKey = 'nim';
 
     public $incrementing = false;
 
@@ -38,7 +40,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public $incrementing = false;
+    //public $incrementing = false;
 
     /**
      * Get the attributes that should be cast.

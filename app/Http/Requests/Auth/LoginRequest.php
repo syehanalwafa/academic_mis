@@ -27,7 +27,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nip' => ['required', 'string'],
+            'nim' => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
     }
@@ -41,11 +41,11 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('nip', 'password'), $this->boolean('remember'))) {
+        if (! Auth::attempt($this->only('nim', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'nip' => trans('auth.failed'),
+                'nim' => trans('auth.failed'),
             ]);
         }
 

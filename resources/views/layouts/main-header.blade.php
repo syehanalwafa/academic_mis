@@ -337,7 +337,7 @@
                     </div>
                     <span class="profile-username">
                       <span class="op-7">Hi,</span>
-                      <span class="fw-bold">Hizrian</span>
+                      <span class="fw-bold">{{ Auth::user()->name}}</span>
                     </span>
                   </a>
                   <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -370,7 +370,10 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Account Setting</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <form method ="POST" action="{{ route('logout') }}">
+                          @csrf
+                          <button type ="submit" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item">Logout</button>
+                        </form>>
                       </li>
                     </div>
                   </ul>
