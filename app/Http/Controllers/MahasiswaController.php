@@ -40,8 +40,15 @@ class MahasiswaController extends Controller
         'address' => 'required|string|max:300',
         'phone' => 'required|string|max:16',
         'dosen_nik' => 'required|string',
+        'profile_picture' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
       ])->validate();
       $mahasiswa = new Mahasiswa($validatedData);
+      if($request->hasFile('profile_picture')){
+        $newFileName = $validatedData['nrp']. '.' . $request->file('profile_picture')
+        ->getClientOriginalExtension();
+        $request->file('profile_picture')->storeAs('uploads', $newFileName);
+        $mahasiswa['profile_picture'] = $newFileName;
+      }
       $mahasiswa->save();
       return redirect(route('mahasiswaList'))->with('success', 'Data berhasil ditambahkan');
     }
@@ -91,6 +98,7 @@ class MahasiswaController extends Controller
         'email' => ['nullable', 'email', 'max:50', Rule::unique('mahasiswa', 'email')->ignore($student->nrp, 'nrp')],
         'address' => ['required', 'string', 'max:300'],
         'dosen_nik' => ['required', 'string'],
+        'profile_picture' => ['nullable|image|mimes:jpeg,jpg,png|max:2048'],
       ]);
       $student['name'] = $validatedData['name'];
       $student['birth_date'] = $validatedData['birth_date'];
@@ -98,6 +106,15 @@ class MahasiswaController extends Controller
       $student['email'] = $validatedData['email'];
       $student['address'] = $validatedData['address'];
       $student['dosen_nik'] = $validatedData['dosen_nik'];
+      if($request->hasFile('profilepicture')){
+        if($student['profile_picture'] !=null){
+          unlink('storage/upload/' . $student->profile_picture);
+        }
+        $file = $request->file('profile_picture');
+        $newFileName = $validatedData['nrp'] . '.' . $file->getClientOriginalExtension();
+        $file->storePubliclyAs('uploads', $newFileName);
+        $student['profile_picture'] = $newFileName;
+      }
       $student->save();
       return redirect()->route('mahasiswaList')
         ->with('status', 'Student successfully updated!');

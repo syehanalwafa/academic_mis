@@ -16,14 +16,10 @@
                 <div class="card-header">
                     <div class="d-flex align-items-center">
                         <h4 class="card-title">Add Row</h4>
-                        <button
-                            class="btn btn-primary btn-round ms-auto"
-                            data-bs-toggle="modal"
-                            data-bs-target="#addRowModal"
-                        >
-                            <i class="fa fa-plus"></i>
+                        <a class="btn btn-primary btn-round ms-auto" href="{{ route('mahasiswaCreate')}}">
+                        <i class="fa fa-plus"></i>
                             Add Row
-                        </button>
+                            </a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -153,7 +149,7 @@
                                 <td>{{ $mahasiswa->birth_date}}</td>
                                 <td>{{ $mahasiswa->phone}}</td>
                                 <td>{{ $mahasiswa->address}}</td>
-                                <td>{{ $mahasiswa->profile_picture}}</td>
+                                <td><img src="{{ asset('/storage/uploads/' . $mahasiswa->profile_picture) }}" width="50px" height="50%" /></td>
                                 <td>{{ $mahasiswa->dosenWali->nik}} - {{ $mahasiswa->dosenWali->name}}</td>
 
                                 <td>

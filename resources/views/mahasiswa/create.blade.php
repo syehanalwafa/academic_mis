@@ -19,7 +19,8 @@
                   <div class="card-body">
                     <!-- Modal -->
                     <div class="row">
-                      <form method="POST" action="{{ route('mahasiswaStore') }}">
+                      <form method="POST" action="{{ route('mahasiswaStore') }}" enctype="multipart/form-data">
+
                           @csrf
                         <div class="form-group">
                               <label for="nrp">NRP</label>
@@ -54,6 +55,17 @@
                                 name="birth_date"
                                 placeholder="Enter Birth Date"
                                 required
+                              />
+                            </div>
+
+                            <div class="form-group">
+                              <label for="profile_picture">Profile Picture</label>
+                              <input
+                                type="file"
+                                class="form-control"
+                                id="profile_picture"
+                                name="profile_picture"
+                                accept="image/jpg,image/png,image/jpeg"
                               />
                             </div>
                         
